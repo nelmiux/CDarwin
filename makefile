@@ -1,5 +1,6 @@
 FILES :=                              \
     .travis.yml                       \
+    darwin-tests/np8259-RunDarwin.in   \
     darwin-tests/np8259-RunDarwin.out  \
     darwin-tests/np8259-TestDarwin.c++ \
     darwin-tests/np8259-TestDarwin.out \
@@ -8,6 +9,7 @@ FILES :=                              \
     Darwin.log                       \
     html                              \
     RunDarwin.c++                    \
+    RunDarwin.in                     \
     RunDarwin.out                    \
     TestDarwin.c++                   \
     TestDarwin.out
@@ -84,7 +86,7 @@ RunDarwin: Darwin.h Darwin.c++ RunDarwin.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Darwin.c++ RunDarwin.c++ -o RunDarwin
 
 RunDarwin.out: RunDarwin
-	./RunDarwin RunDarwin.out
+	./RunDarwin > RunDarwin.out
 
 TestDarwin: Darwin.h Darwin.c++ TestDarwin.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Darwin.c++ TestDarwin.c++ -o TestDarwin $(LDFLAGS)
