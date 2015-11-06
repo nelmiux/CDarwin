@@ -1,3 +1,15 @@
+commit a6493241528d4b3ba3e6cc8c070e65023ac2edbf
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:14:17 2015 -0600
+
+    Fixed
+
+commit d3641e67cc043bd7e9131d00fe70d7b5fd840351
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:11:37 2015 -0600
+
+    closes #12
+
 commit 72977ad671284b92912d67e717c3e447136966a4
 Author: nelmiux <npererar@utexas.edu>
 Date:   Fri Nov 6 17:09:51 2015 -0600
