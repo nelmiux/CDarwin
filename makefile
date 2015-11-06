@@ -1,6 +1,5 @@
 FILES :=                              \
     .travis.yml                       \
-    darwin-tests/np8259-RunDarwin.in   \
     darwin-tests/np8259-RunDarwin.out  \
     darwin-tests/np8259-TestDarwin.c++ \
     darwin-tests/np8259-TestDarwin.out \
@@ -9,7 +8,6 @@ FILES :=                              \
     Darwin.log                       \
     html                              \
     RunDarwin.c++                    \
-    RunDarwin.in                     \
     RunDarwin.out                    \
     TestDarwin.c++                   \
     TestDarwin.out
