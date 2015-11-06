@@ -66,8 +66,13 @@ status:
 	git remote -v
 	git status
 
+<<<<<<< HEAD
 test: RunDarwin.out TestDarwin.out
 
+=======
+test: RunDarwin.out TestDarwin.out  
+	
+>>>>>>> refs/remotes/origin/dev-branch
 darwin-tests:
 	git clone https://github.com/cs371p-fall-2015/darwin-tests.git
 
@@ -84,7 +89,11 @@ RunDarwin: Darwin.h Darwin.c++ RunDarwin.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Darwin.c++ RunDarwin.c++ -o RunDarwin
 
 RunDarwin.out: RunDarwin
+<<<<<<< HEAD
 	./RunDarwin RunDarwin.out
+=======
+	./RunDarwin > RunDarwin.out
+>>>>>>> refs/remotes/origin/dev-branch
 
 TestDarwin: Darwin.h Darwin.c++ TestDarwin.c++
 	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Darwin.c++ TestDarwin.c++ -o TestDarwin $(LDFLAGS)
