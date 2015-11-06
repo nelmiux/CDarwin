@@ -68,8 +68,8 @@ status:
 	git remote -v
 	git status
 
-test: RunDarwin.out TestDarwin.out
-
+test: RunDarwin.out TestDarwin.out  
+	
 darwin-tests:
 	git clone https://github.com/cs371p-fall-2015/darwin-tests.git
 
