@@ -1,3 +1,43 @@
+commit 61d4428318d63ffe71273983aecbd0bccfac5d7c
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Fri Nov 6 17:43:13 2015 -0600
+
+    Update README.md
+
+commit b8b7b2d5f40ef2e88bd338c8da13780ae3b47875
+Merge: 2b45ed7 851c560
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Fri Nov 6 17:42:32 2015 -0600
+
+    Merge pull request #19 from nelmiux/dev-branch
+    
+    Final Merge
+
+commit 851c5607b7b24a3301f76bd7bd734c9be4787d0b
+Merge: 7c43c07 2b45ed7
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:41:53 2015 -0600
+
+    Fixed
+
+commit 2b45ed7c55476c5430ed7231fb0d726082f9f0c8
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:37:49 2015 -0600
+
+    Clear
+
+commit c1d20a88abe267672fab6482474bdf741b3393c0
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:31:04 2015 -0600
+
+    Final Merge
+
+commit 7c43c07d658c8540864ed89133034acd1fe18dcc
+Author: nelmiux <npererar@utexas.edu>
+Date:   Fri Nov 6 17:18:14 2015 -0600
+
+    Updated
+
 commit a6493241528d4b3ba3e6cc8c070e65023ac2edbf
 Author: nelmiux <npererar@utexas.edu>
 Date:   Fri Nov 6 17:14:17 2015 -0600
@@ -76,9 +116,33 @@ Date:   Sat Oct 24 22:48:12 2015 -0500
 
     Delete README.md
 
+commit c166138b0e99ef484c8cf1d22e135b2b23246ba6
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Oct 24 22:45:43 2015 -0500
+
+    Initial Commit
+
+commit f0a39527001c44257e977622850700ad442bdb7e
+Author: nelmiux <npererar@utexas.edu>
+Date:   Sat Oct 24 22:41:10 2015 -0500
+
+    Initial Commit
+
 commit d28ac9389fef7cae7a650b11e20591327d41c3cc
 Author: Nelma Perera <npererar@utexas.edu>
 Date:   Sat Oct 24 22:38:14 2015 -0500
+
+    Update README.md
+
+commit b4a78aedf321837018e98f3319db99754408f211
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Sat Oct 24 22:37:29 2015 -0500
+
+    Update README.md
+
+commit 4de4b822ca087ff837c399dab3212f0f1735db9a
+Author: Nelma Perera <npererar@utexas.edu>
+Date:   Sat Oct 24 22:35:49 2015 -0500
 
     Update README.md
 
