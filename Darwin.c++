@@ -102,10 +102,6 @@ void Species::operator< (int x) {
 	line_ = x;
 }
 
-Species::~Species(){
-
-}
-
 Creature::Creature () {
 	program_counter = 0;
 }
@@ -157,11 +153,6 @@ bool Creature::operator== (string direction) {
 template<typename Cl>
 auto Creature::operator>> (Cl c) -> decltype(specie_ >> this) { return specie_ >> this; }
 
-Creature::~Creature(){
-
-}
-
-
 Darwin::Darwin (int height, int width):
 				width_(width), height_(height) {
 	grid.resize(height_, vector<char>(width_, '.'));
@@ -171,6 +162,8 @@ Darwin::Darwin (int height, int width):
 
 const void Darwin::addCreature (Creature& creature_, int const i, int const j) {
 	decltype(creature_ >> this) letter_ = (creature_ >> this);
+	if ((j > (width_ - 1)) || (i > (height_ - 1))) throw invalid_argument("Trying to Add Creature Out of Grid Bounds");
+	if ((j < 0) || (i < 0)) throw invalid_argument("Row and Column Number Must be Greater Than 0");
 	grid[i][j] = char(letter_);
 	creatures[i][j] = &creature_;
 }
@@ -247,12 +240,13 @@ void Darwin::managerWallEmptyInfect (Creature& c, T letter_, int i, int j) {
 	}
 }
 	
-void Darwin::turn (int turn, bool display) {
-	if (display) {
-		cout << "Turn = " << turn << "." << "\n";
-			if (turn == 0) {printGrid(); return;}
+void Darwin::turn (int i, bool display) {
+	currentTurn = "";
+	currentTurn = "Turn = " + to_string(i) + ".\n";
+	if (i == 0) {
+		makeTurn(display);
+		return;
 	}
-	data_.resize(0);
 	vector<bool> processed;
 	processed.resize(height_ * width_, false);
 	for (int i = 0; i < height_; i++) {
@@ -287,44 +281,78 @@ void Darwin::turn (int turn, bool display) {
 					*creatures[ii][jj] = n;
 					processed[jj + width_ * ii] = true;
 				}
-				data_.push_back(*creatures[i][j]);
 			}
 		}
 	}
-	if (display) printGrid();
+	makeTurn(display);
 }
 
-void Darwin::printGrid () {
-	cout << "  ";
+void Darwin::makeTurn(bool display) {
+	currentTurn = currentTurn + "  ";
 	for (int j = 0; j < width_; ++j) {
-		cout << j % 10;
+		int t = j % 10;
+		currentTurn = currentTurn + to_string(t);
 	}
 	for (int i = 0; i < height_; ++i) {
-		cout << "\n";
-		cout << i % 10;
-		cout << " ";
+		int t = i % 10;
+		currentTurn = currentTurn + "\n" + to_string(t) + " ";
 		for (int j = 0; j < width_; ++j) {
-			cout << grid[i][j];
+			currentTurn = currentTurn + grid[i][j];
 		}
 	}
-	cout << "\n\n";
+	currentTurn = currentTurn + "\n\n";
+	turns.push_back(currentTurn);
+	if (display) cout << currentTurn;
 }
 
-void Darwin::run (int const turns) {
-	for (int i = 0; i <= turns; i++) {
-		turn(i, true);
-	}
+void Darwin::run (int const turns_, bool display) {
+	for (int i = 0; i <= turns_; i++) turn(i, display);
 }
 
-Darwin::Iterator Darwin::begin() { return data_.begin(); }
+int Darwin::size() {
+	return turns.size();
+}
 
-Darwin::Iterator Darwin::end() { return data_.end(); }
+const Darwin::Iterator Darwin::begin() { 
+	return turns.begin(); 
+}
+
+const Darwin::Iterator Darwin::end() { 
+	return turns.end(); 
+}
 
 template<typename T>
-const T& Darwin::at(int i) { return data_.at(i); }
+T& Darwin::operator* () { 
+	return *ptr_; 
+}
 
-Darwin::~Darwin(){
+Darwin::Iterator Darwin::operator++() { 
+	Darwin::Iterator i = (*this).it; 
+	ptr_++; 
+	return i; 
+}
 
+Darwin::Iterator Darwin::operator++(int junk) { 
+	ptr_++; 
+	return (*this).it; 
+}
+
+const string& Darwin::at(int i) const {
+	assert((i < int(turns.size())) && (i >= 0));
+	return turns.at(i); 
+}
+
+string& Darwin::operator[](int i) {
+    assert((i < int(turns.size())) && (i >= 0));
+  	return turns[i];
+}
+
+bool Darwin::operator==(const Darwin& rhs) { 
+	return ptr_ == rhs.ptr_; 
+}
+
+bool Darwin::operator!=(const Darwin& rhs) { 
+	return ptr_ != rhs.ptr_; 
 }
 
 

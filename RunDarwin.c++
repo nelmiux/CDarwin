@@ -103,6 +103,7 @@ void addCreatures (Darwin& d, Species& Food, Species& Hopper, Species& Rover, Sp
 int main () {
     using namespace std;
 
+    bool notDisplay = false;
     // ----
     // food
     // ----
@@ -183,99 +184,19 @@ int main () {
     // best
     // ----
 
-    /*
-     0: if_enemy 2         
-     1: go 4
-     2: infect
-     3: go 0
-     4: if_enemy 0         
-     5: left
-     6: if_enemy 0
-     7: left
-     8: if_enemy 0
-     9: left
-     10: if_enemy 0
-     11: if_random 33 
-     12: left
-     13: if_enemy 0
-     14: if_random 33  
-     15: left
-     16: if_enemy 0
-     17: if_random 33  
-     18: left
-     19: if_enemy 0
-     20: if_random 33 
-     21: if_enemy 0
-     22: if_wall 28  
-     23: if_random 26  
-     24: left
-     25: go 20
-     26: hop
-     27: go 20
-     28: left          
-     29: if_enemy 0
-     30: if_random 33  
-     31: left
-     32: go 20
-     33: if_enemy 0 
-     34: if_empty 37
-     35: left
-     36: go 33
-     37: if_random 34
-     38: if_random 34
-     39: if_random 34
-     40: if_random 34
-     41: if_random 34
-     42: if_random 34
-     43: go 0
-    */
-
     Species Best;
-    Best.addInstruction("if_enemy", 2);
-    Best.addInstruction("go", 4);
+    Best.addInstruction("if_enemy", 9);
+    Best.addInstruction("if_empty", 7);
+    Best.addInstruction("if_random", 5);
+    Best.addInstruction("right");
+    Best.addInstruction("go", 0);
+    Best.addInstruction("left");
+    Best.addInstruction("go", 0);
+    Best.addInstruction("hop");
+    Best.addInstruction("go", 0);
     Best.addInstruction("infect");
     Best.addInstruction("go", 0);
 
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_random", 33);   
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("left");
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_random", 33);   
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_wall", 28);
-    Best.addInstruction("if_random", 26);   
-    Best.addInstruction("left");
-    Best.addInstruction("go", 20);
-    Best.addInstruction("hop");
-    Best.addInstruction("go", 20);
-    Best.addInstruction("left");          
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_random", 33);  
-    Best.addInstruction("left");
-    Best.addInstruction("go", 20);
-    Best.addInstruction("if_enemy", 0);
-    Best.addInstruction("if_empty", 37);
-    Best.addInstruction("left");
-    Best.addInstruction("go", 20);
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("if_random", 33); 
-    Best.addInstruction("go", 20);
 
     // ----------
     // darwin 8x8
@@ -364,8 +285,8 @@ int main () {
 
     for (int i = 0; i < 1001; ++i) {
         if ((i < 10) || (i % 100 == 0))
-            z.turn(i, true);
-        else z.turn(i, false);
+            z.turn(i);
+        else z.turn(i, notDisplay);
     }
 
     // ------------
@@ -393,15 +314,13 @@ int main () {
     Print every 100th grid after that (i.e. 100, 200, 300...1000).
     */
     Darwin v(72, 72);
-    
-    //int row, col, r, rr;
 
     addCreatures(v, Food, Hopper, Rover, Trap, Best, true);
 
     for (int i = 0; i < 1001; ++i) {
         if ((i < 10) || (i % 100 == 0))
-            v.turn(i, true);
-        else v.turn(i, false);
+            v.turn(i);
+        else v.turn(i, notDisplay);
     }
 
     return 0;}

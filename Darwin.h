@@ -13,6 +13,8 @@
 #include <utility>	 //pair
 #include <typeinfo>
 
+#include "gtest/gtest.h"
+
 using namespace std;
 
 class Species {
@@ -28,13 +30,18 @@ class Species {
 
 		void incrementLine (int&);
 
+		FRIEND_TEST(DarwinFixture, addIntructions_1);
+		FRIEND_TEST(DarwinFixture, addIntructions_2);
+		FRIEND_TEST(DarwinFixture, addIntructions_3);
+		FRIEND_TEST(DarwinFixture, createCreature_1);
+		FRIEND_TEST(DarwinFixture, createCreature_2);
+		FRIEND_TEST(DarwinFixture, createCreature_3);
+
 	public:
 
 		Species ();
 
 		Species (string const name);
-
-		~Species();
 
 		const void addInstruction (string const instruction);
 
@@ -57,6 +64,10 @@ class Creature {
 		string direction_;
 
 		int program_counter;
+
+		FRIEND_TEST(DarwinFixture, createCreature_1);
+		FRIEND_TEST(DarwinFixture, createCreature_2);
+		FRIEND_TEST(DarwinFixture, createCreature_3);
 		
 	public:
 
@@ -66,14 +77,14 @@ class Creature {
 
 		Creature (Species&, string const);
 
-		Creature (Creature&, string const, int const);
-
-		~Creature();
+		Creature (Creature&, string const, int const pc = 0);
 
 		bool operator== (string direction);
 
 		template<typename Cl>
 		auto operator>> (Cl c) -> decltype(specie_ >> this);
+
+		bool operator== (Creature& c);
 
 		int execute (const bool wall, const bool empty, const bool enemy);
 		
@@ -82,11 +93,13 @@ class Creature {
 class Darwin {
 	private:
 
-		typedef vector<Creature> Creatures_;
+		typedef vector<string> _turns_;
 
 		vector<vector<char>> grid;
 
-		Creatures_ data_;
+		vector<string> turns;
+
+		string currentTurn;
 
 		int width_, height_, index, add;
 
@@ -99,32 +112,54 @@ class Darwin {
 
 		string direction (Creature&);
 
-		void printGrid ();
-
-		Darwin ();
+		FRIEND_TEST(DarwinFixture, addCreature_1);
+		FRIEND_TEST(DarwinFixture, addCreature_2);
+		FRIEND_TEST(DarwinFixture, addCreature_3);
+		FRIEND_TEST(DarwinFixture, runSimulations_1);
+		FRIEND_TEST(DarwinFixture, runSimulations_2);
+		FRIEND_TEST(DarwinFixture, runSimulations_3);
 
 	public:
 
 		Darwin (int, int);
 
-		~Darwin();
-
 		const void addCreature (Creature&, int const, int const);
 
-		typedef Creatures_::iterator Iterator;
+		typedef _turns_::iterator Iterator;
 
-  		typedef Creatures_::const_iterator const_Iterator;
+		typedef _turns_::iterator* pointer;
 
-  		Iterator begin();
+		Iterator it;
 
-		Iterator end();
+		int size();
+
+  		const Iterator begin();
+
+		const Iterator end();
+
+		Iterator operator++();
+
+		Iterator operator++(int);
+
+		bool operator==(const Darwin& rhs);
+
+		bool operator!=(const Darwin& rhs);
 
 		template<typename T>
-		const T& at(int i);
+		T& operator* ();
 
-		void turn (int, bool);
+		const string& at(int i) const;
 
-		void run (int const turns);
+		string& operator[](int); 
+
+		void turn (int, bool display = true);
+
+		void makeTurn(bool display = true);
+
+		void run (int const, bool display = true);
+
+	private:
+		pointer ptr_;
 
 };
 
