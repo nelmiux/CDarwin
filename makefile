@@ -66,7 +66,6 @@ status:
 test: RunDarwin.out TestDarwin.out  
 	
 darwin-tests:
-	git clone https://github.com/cs371p-fall-2015/darwin-tests.git
 
 html: Doxyfile Darwin.h Darwin.c++ RunDarwin.c++ TestDarwin.c++
 	doxygen Doxyfile
