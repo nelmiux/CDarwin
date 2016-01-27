@@ -1,8 +1,8 @@
 FILES :=                              \
     .travis.yml                       \
-    #darwin-tests/np8259-RunDarwin.out  \
-    #darwin-tests/np8259-TestDarwin.c++ \
-    #darwin-tests/np8259-TestDarwin.out \ #
+    # darwin-tests/np8259-RunDarwin.out  \
+    # darwin-tests/np8259-TestDarwin.c++ \
+    # darwin-tests/np8259-TestDarwin.out \ 
     Darwin.c++                       \
     Darwin.h                         \
     Darwin.log                       \
